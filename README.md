@@ -4,6 +4,8 @@
 
 This project introduces an automated, agentic medical waitlist system designed to optimise the patient appointment scheduling process. By leveraging AI-powered agents, we aim to reduce administrative overhead, minimise wait times, and ensure that patients are matched to the most suitable appointments based on clinical urgency and personal preferences.
 
+Live version here: https://waitlist--qwiklabs-gcp-04-59867310068c.us-central1.hosted.app
+
 ## 🎯 The Problem
 
 Healthcare providers often struggle with managing long waitlists for specialist appointments. The manual process of triaging patients based on referral notes and then matching them with available slots is time-consuming, prone to error, and can lead to suboptimal outcomes for patients. This administrative burden takes valuable time away from patient care and patient preferences are often ignored in this process.
