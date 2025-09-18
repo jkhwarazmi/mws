@@ -19,7 +19,7 @@ Our solution is a multi-component system that automates and enhances the waitlis
    
 ## 🌟 Key Features
 
-*   **Automated Patient Triage:** The `Clinical Grader` agent ingests patient data and outputs urgency scores with justifications.
+*   **Automated Patient Triage:** The `Clinical Grader` agent ingests patient data and outputs urgency scores with justifications - we do not score sensitive personal patient details to ensure confidentiality.
 *   **Preference-Based Ranking:** The `Preferences Ranker` agent intelligently matches patients to appointments, considering a wide range of preferences, we also consider proximity to the hospital for appointments within 24 hours and time on the waiting list (first prioritising >10 weeks, then >4 weeks).
 *   **Comprehensive Dashboard:** The frontend provides a clear overview of key metrics, including the number of patients on the waitlist and upcoming appointments.
 *   **Waitlist & Appointment Management:** Full CRUD functionality for managing patients on the waitlist and scheduling appointments.
