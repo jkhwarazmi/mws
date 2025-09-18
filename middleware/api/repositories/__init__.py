@@ -1,0 +1,7 @@
+from .appointments_repo import AppointmentsRepository
+from .waitlist_repo import WaitlistRepository
+from .match_repo import MatchRepository
+from .hospitals_repo import HospitalsRepository
+from .departments_repo import DepartmentsRepository
+from .rejected_appointments_repo import RejectedAppointmentsRepository
+from .dashboard_repo import DashboardRepository

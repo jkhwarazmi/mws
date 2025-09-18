@@ -1,0 +1,57 @@
+[
+  {
+    "hospital_id": "1",
+    "hospital_name": "Hospital 1",
+    "address_line1": "Eastern Rd",
+    "address_line2": "",
+    "city": "Brighton",
+    "county": "East Sussex",
+    "post_code": "BN2 5BE",
+    "latitude": 50.8195,
+    "longitude": -0.1192
+  },
+  {
+    "hospital_id": "2",
+    "hospital_name": "Hospital 2",
+    "address_line1": "Lewes Rd",
+    "address_line2": "",
+    "city": "Haywards Heath",
+    "county": "West Sussex",
+    "post_code": "RH16 4EX",
+    "latitude": 50.995,
+    "longitude": -0.1037
+  },
+  {
+    "hospital_id": "3",
+    "hospital_name": "Hospital 3",
+    "address_line1": "Park Ave",
+    "address_line2": "",
+    "city": "Worthing",
+    "county": "West Sussex",
+    "post_code": "BN11 2DH",
+    "latitude": 50.8173,
+    "longitude": -0.3728
+  },
+  {
+    "hospital_id": "4",
+    "hospital_name": "Hospital 4",
+    "address_line1": "Spitalfield Ln",
+    "address_line2": "",
+    "city": "Chichester",
+    "county": "West Sussex",
+    "post_code": "PO19 6SE",
+    "latitude": 50.8441,
+    "longitude": -0.7767
+  },
+  {
+    "hospital_id": "5",
+    "hospital_name": "Hospital 5",
+    "address_line1": "Upper Shoreham Rd",
+    "address_line2": "",
+    "city": "Shoreham-by-Sea",
+    "county": "West Sussex",
+    "post_code": "BN43 6TQ",
+    "latitude": 50.8429,
+    "longitude": -0.2458
+  }
+]

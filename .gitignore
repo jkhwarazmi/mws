@@ -1,0 +1,116 @@
+# --- General & IDEs ---
+# Miscellaneous
+.DS_Store
+*.pem
+*.log
+
+# IDE settings
+.idea/
+.vscode/
+.spyderproject
+.spyproject
+.ropeproject
+.firebaserc
+
+# Environment variables
+.env*
+!.env.example
+.envrc
+
+
+# --- Frontend (Node.js / Next.js) ---
+# Dependencies
+.next/
+node_modules
+firebase.json
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Build artifacts
+/.next/
+/out/
+/build
+*.tsbuildinfo
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Deployment-specific
+.vercel
+.firebase/*
+
+
+# --- Python (Agents & Middleware) ---
+# Virtual environments
+.venv
+venv
+env
+ENV
+env.bak
+venv.bak
+.pixi
+__pypackages__
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+# Allow frontend-specific lib directory
+!/frontend/src/lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Test reports and caches
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+.ruff_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+cython_debug/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Specific files
+agents/preferences_agent/test_prompt.txt

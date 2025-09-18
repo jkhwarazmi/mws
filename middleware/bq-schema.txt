@@ -1,0 +1,97 @@
+-- Create a dataset named 'waitlist' in your BigQuery project before running these commands.
+-- Replace `your-project-id` with your actual Google Cloud project ID.
+
+CREATE TABLE `your-project-id.waitlist.users`
+(
+  email STRING NOT NULL OPTIONS(description="The email of the user, forms the primary key"),
+  PRIMARY KEY (email) NOT ENFORCED
+);
+
+CREATE TABLE `your-project-id.waitlist.departments`
+(
+  department_id STRING NOT NULL OPTIONS(description="The unique department ID"),
+  department_name STRING NOT NULL OPTIONS(description="The department name"),
+  PRIMARY KEY (department_id) NOT ENFORCED
+)
+OPTIONS(
+  description="Table containing information about hospital departments"
+);
+
+CREATE TABLE `your-project-id.waitlist.hospitals`
+(
+  hospital_id STRING NOT NULL OPTIONS(description="The unique hospital ID"),
+  hospital_name STRING NOT NULL OPTIONS(description="The hospital name"),
+  address_line1 STRING OPTIONS(description="The hospital address line 1"),
+  address_line2 STRING OPTIONS(description="The hospital address line 2"),
+  city STRING OPTIONS(description="The hospital city"),
+  county STRING OPTIONS(description="The hospital county"),
+  postcode STRING OPTIONS(description="The hospital postcode"),
+  PRIMARY KEY (hospital_id) NOT ENFORCED
+)
+OPTIONS(
+  description="Table containing information about hospitals in the network"
+);
+
+CREATE TABLE `your-project-id.waitlist.waitlist`
+(
+  waitlist_id STRING NOT NULL OPTIONS(description="The waitlist ID"),
+  medical_number STRING NOT NULL OPTIONS(description="The patient's medical number"),
+  date_of_birth DATE OPTIONS(description="The patient's DOB"),
+  postcode STRING OPTIONS(description="The patient's postcode"),
+  department_id STRING OPTIONS(description="The referral department ID, references departments.department_id"),
+  referral_notes STRING OPTIONS(description="The patient's referral notes"),
+  referral_date DATETIME OPTIONS(description="The date the patient was referred"),
+  medical_history JSON OPTIONS(description="The patients medical history, formatted as a JSON array in the form [{\"note\" ..., \"date\": ...}, ...]"),
+  clinical_urgency INT64 OPTIONS(description="The agent-generated clinical urgency scored as low (1), medium (2), or high (3)"),
+  condition_severity INT64 OPTIONS(description="The agent-generated condition severity, scored as low (1), medium (2), or high (3)"),
+  comorbidities FLOAT64 OPTIONS(description="The agent-generated comorbidities score, scored from 0 (few pressing ailments) to 1 (many pressing ailments)"),
+  agent_justification STRING OPTIONS(description="A string containing the concatenated justification for all agent decisions"),
+  edited_at DATETIME OPTIONS(description="A field that verifies whether a human has overwritten the agent score data"),
+  is_seen BOOL DEFAULT FALSE OPTIONS(description="Whether the patient has been seen by a clinician for this record"),
+  grading_status STRING OPTIONS(description="The status of the agent's grading: one of NULL, \"GRADING\", \"FAILED\", \"COMPLETED\""),
+  graded_at DATETIME OPTIONS(description="A field that displays when the grading_status was last updated"),
+  is_assigned BOOL DEFAULT FALSE OPTIONS(description="Whether the patient has been assigned an appointment slot"),
+  preferences JSON OPTIONS(description="The patient's medical preferences, formatted as a JSON object in the form {key: value, ...}"),
+  deleted_at DATETIME OPTIONS(description="Whether the patient has been soft deleted or not"),
+  delete_reason STRING OPTIONS(description="The reason for patient deletion"),
+  prefers_evening BOOL DEFAULT FALSE OPTIONS(description="Whether the patient prefers to be contacted in the evening"),
+  no_response_count INT64 DEFAULT 0 OPTIONS(description="Count tracking number of times patient hasn't responded to an appointment confirmation request."),
+  PRIMARY KEY (waitlist_id) NOT ENFORCED,
+  CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES `your-project-id.waitlist.departments`(department_id) NOT ENFORCED
+)
+OPTIONS(
+  description="Table containing waitlist entries for patients"
+);
+
+CREATE TABLE `your-project-id.waitlist.appointments`
+(
+  appointment_id STRING NOT NULL OPTIONS(description="The unique appointment ID"),
+  appointment_time DATETIME NOT NULL OPTIONS(description="The appointment datetime"),
+  waitlist_id STRING OPTIONS(description="The waitlist entry assigned to this appointment which defaults to NULL, references waitlist.waitlist_id"),
+  department_id STRING OPTIONS(description="The department this appointment is for, references departments.department_id"),
+  hospital_id STRING OPTIONS(description="The hospital this appointment is in, references hospitals.hospital_id"),
+  assigner_email STRING OPTIONS(description="The user who assigned this appointment, references users.email"),
+  properties JSON OPTIONS(description="The additional appointment properties, formatted as a collection of JSON keys"),
+  assign_at DATETIME OPTIONS(description="The UTC time to auto-assign the appointment at if not otherwise assigned"),
+  deleted_at TIMESTAMP OPTIONS(description="The time the appointment was deleted, default NULL"),
+  delete_reason STRING OPTIONS(description="The reasoning for deleting the appointment"),
+  PRIMARY KEY (appointment_id) NOT ENFORCED,
+  CONSTRAINT fk_hospital FOREIGN KEY (hospital_id) REFERENCES `your-project-id.waitlist.hospitals`(hospital_id) NOT ENFORCED,
+  CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES `your-project-id.waitlist.departments`(department_id) NOT ENFORCED,
+  CONSTRAINT fk_email FOREIGN KEY (assigner_email) REFERENCES `your-project-id.waitlist.users`(email) NOT ENFORCED,
+  CONSTRAINT fk_waitlist FOREIGN KEY (waitlist_id) REFERENCES `your-project-id.waitlist.waitlist`(waitlist_id) NOT ENFORCED
+)
+OPTIONS(
+  description="Table containing information about patient appointments"
+);
+
+CREATE TABLE `your-project-id.waitlist.rejected_appointments`
+(
+  appointment_id STRING NOT NULL OPTIONS(description="The rejected appointment ID, forms a partial primary key, references appointments.appointment_id"),
+  waitlist_id STRING NOT NULL OPTIONS(description="The waitlist_ID for the rejector, forms a partial primary key, references waitlist.waitlist_ID"),
+  PRIMARY KEY (appointment_id, waitlist_id) NOT ENFORCED,
+  CONSTRAINT fk_appointment FOREIGN KEY (appointment_id) REFERENCES `your-project-id.waitlist.appointments`(appointment_id) NOT ENFORCED
+)
+OPTIONS(
+  description="Table containing information about rejected patient appointment slots"
+);

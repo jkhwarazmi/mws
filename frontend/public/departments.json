@@ -1,0 +1,62 @@
+[
+  {
+    "department_id": "10",
+    "department_name": "Obstetrics and Gynecology"
+  },
+  {
+    "department_id": "6",
+    "department_name": "Radiology"
+  },
+  {
+    "department_id": "14",
+    "department_name": "Ophthalmology"
+  },
+  {
+    "department_id": "13",
+    "department_name": "Gastroenterology"
+  },
+  {
+    "department_id": "12",
+    "department_name": "Urology"
+  },
+  {
+    "department_id": "2",
+    "department_name": "Cardiology"
+  },
+  {
+    "department_id": "9",
+    "department_name": "Surgery"
+  },
+  {
+    "department_id": "5",
+    "department_name": "Neurology"
+  },
+  {
+    "department_id": "15",
+    "department_name": "ENT (Ear, Nose, and Throat)"
+  },
+  {
+    "department_id": "3",
+    "department_name": "Oncology"
+  },
+  {
+    "department_id": "7",
+    "department_name": "Orthopedics"
+  },
+  {
+    "department_id": "8",
+    "department_name": "Dermatology"
+  },
+  {
+    "department_id": "1",
+    "department_name": "Emergency Medicine"
+  },
+  {
+    "department_id": "4",
+    "department_name": "Pediatrics"
+  },
+  {
+    "department_id": "11",
+    "department_name": "Psychiatry"
+  }
+]

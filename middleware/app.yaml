@@ -1,0 +1,31 @@
+runtime: python310
+
+instance_class: F4
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 1
+
+entrypoint: gunicorn --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind :$PORT --timeout 595 main:app
+
+env_variables:
+  # Required by BigQueryClient
+  BQ_PROJECT_ID: "your-project-id"
+  PROJECT_DATASET: "waitlist"
+
+  # Tables
+  WAITLIST_TABLE: "waitlist"
+  APPOINTMENTS_TABLE: "appointments"
+  DEPARTMENTS_TABLE: "departments"
+  HOSPITALS_TABLE: "hospitals"
+  REJECTED_APPOINTMENTS_TABLE: "rejected_appointments"
+  USERS_TABLE: "users"
+
+  # Frontend
+  FRONTEND_URL: "your-frontend-url"
+
+  # Agent
+  AGENT_RESOURCE_ID: "your-agent-resource-id"
+  PREFERENCES_AGENT_RESOURCE_ID: "your-preferences-agent-resource-id"
+  AGENT_LOCATION: "us-west1"
+  AGENT_STAGING_BUCKET: "your-agent-staging-bucket"
